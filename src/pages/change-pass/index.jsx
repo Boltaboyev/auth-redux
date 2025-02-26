@@ -39,7 +39,6 @@ const ChangePasswordPage = () => {
                 toast.error("Email not found!")
             }
         } catch (error) {
-            toast.error("Failed to check email!")
             console.error(error)
         }
     }
