@@ -20,7 +20,7 @@ const authSlice = createSlice({
                     state.user = response.data
                     Cookies.set("user", JSON.stringify(response.data))
                 })
-                .catch((error) => console.error(error))
+                .catch((error)  => console.error(error))
         },
 
         logoutUser: (state) => {
