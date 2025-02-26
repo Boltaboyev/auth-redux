@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+.container2 {
+    width: 80%;
+    margin: 0 auto;
+}
+
+@media (min-width: 1450px) {
+    .container2 {
+        width: 1150px;
+    }
+}
