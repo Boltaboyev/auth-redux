@@ -1,8 +1,9 @@
 import React, {useState} from "react"
 import {Link, useNavigate} from "react-router-dom"
 import {Button, Checkbox, Divider, TextField} from "@mui/material"
-import axios from "axios"
+import {useDispatch} from "react-redux"
 import {toast} from "react-toastify"
+import {registerUser} from "../../redux/authSlice"
 
 // img
 import register from "../../assets/register.svg"
@@ -15,6 +16,7 @@ import apple from "../../assets/apple.svg"
 
 const RegisterPage = () => {
     const navigate = useNavigate()
+    const dispatch = useDispatch()
     const [formData, setFormData] = useState({
         name: "",
         surname: "",
@@ -40,19 +42,8 @@ const RegisterPage = () => {
         }
 
         try {
-            const response = await axios.post(
-                "https://67a2eab7409de5ed5256be7b.mockapi.io/users",
-                {
-                    name: formData.name,
-                    surname: formData.surname,
-                    email: formData.email,
-                    phoneNum: formData.phoneNum,
-                    password: formData.password,
-                }
-            )
+            await dispatch(registerUser(formData))
             toast.success("Registration successful!")
-            console.log(response.data)
-
             navigate("/login")
         } catch (error) {
             toast.error("Failed to register!")
@@ -68,7 +59,6 @@ const RegisterPage = () => {
                 </Link>
 
                 <div className="grid grid-cols-2 gap-[20px] items-center">
-                    {/* img */}
                     <div className="flex justify-center items-center">
                         <img src={register} alt="img" className="h-[600px]" />
                     </div>
@@ -96,7 +86,6 @@ const RegisterPage = () => {
                                     onChange={handleChange}
                                     required
                                 />
-
                                 <TextField
                                     size="small"
                                     id="surname"
@@ -108,7 +97,6 @@ const RegisterPage = () => {
                                     required
                                 />
                             </div>
-
                             <div className="grid grid-cols-2 gap-[20px]">
                                 <TextField
                                     size="small"
@@ -121,7 +109,6 @@ const RegisterPage = () => {
                                     onChange={handleChange}
                                     required
                                 />
-
                                 <TextField
                                     size="small"
                                     id="number"
@@ -134,7 +121,6 @@ const RegisterPage = () => {
                                     required
                                 />
                             </div>
-
                             <TextField
                                 size="small"
                                 id="password"
@@ -146,7 +132,6 @@ const RegisterPage = () => {
                                 onChange={handleChange}
                                 required
                             />
-
                             <TextField
                                 size="small"
                                 id="confirmPassword"
@@ -158,7 +143,6 @@ const RegisterPage = () => {
                                 onChange={handleChange}
                                 required
                             />
-
                             <div className="flex justify-start items-center select-none">
                                 <Checkbox
                                     id="checkbox"
@@ -179,7 +163,6 @@ const RegisterPage = () => {
                                     </span>
                                 </label>
                             </div>
-
                             <Button
                                 type="submit"
                                 variant="contained"
@@ -188,7 +171,6 @@ const RegisterPage = () => {
                                 Create account
                             </Button>
                         </form>
-
                         <p className="font-medium text-sm text-center w-full text-[#313131]">
                             Already have an account?{" "}
                             <Link
@@ -198,22 +180,18 @@ const RegisterPage = () => {
                                 Login
                             </Link>
                         </p>
-
                         <Divider
                             textAlign="center"
                             className="w-full font-normal text-sm text-[#313131] opacity-50">
                             Or Sign up with
                         </Divider>
-
                         <div className="grid grid-cols-3 gap-[10px] w-full">
                             <Button variant="outlined" className="!py-[13px]">
                                 <img src={facebook} alt="facebook" />
                             </Button>
-
                             <Button variant="outlined" className="!py-[13px]">
                                 <img src={google} alt="facebook" />
                             </Button>
-
                             <Button variant="outlined" className="!py-[13px]">
                                 <img src={apple} alt="facebook" />
                             </Button>

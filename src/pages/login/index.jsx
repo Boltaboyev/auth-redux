@@ -48,7 +48,6 @@ const LoginPage = () => {
             if (user) {
                 toast.success("Login successful!")
 
-                // Cookie'ga barcha user ma'lumotlarini saqlash
                 Cookies.set("user", JSON.stringify(user))
 
                 navigate("/")

@@ -27,10 +27,6 @@ const SetPasswordPage = () => {
         }
 
         const userId = localStorage.getItem("userId")
-        if (!userId) {
-            toast.error("No user found!")
-            return
-        }
 
         const mockApiUrl = "https://67a2eab7409de5ed5256be7b.mockapi.io/users"
 
